@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+/* ── Tailwind v4 theme tokens ── */
+@theme {
+  --color-ink: #07090d;
+  --color-surface: #0d1017;
+  --color-plate: #111520;
+  --color-canvas: #f0ece4;
+  --color-stone: #8a8880;
+  --color-flint: #4a4845;
+  --color-gold: #c4a35a;
+  --color-gold-soft: rgba(196, 163, 90, 0.10);
+  --color-gold-glow: rgba(196, 163, 90, 0.25);
+  --color-wire: rgba(255, 255, 255, 0.05);
+  --color-wire-hover: rgba(255, 255, 255, 0.11);
+
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-pill: 9999px;
+}
+
+/* ── Base — inside @layer base so Tailwind utility classes can override ── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #07090d;
+    color: #f0ece4;
+    font-family: "DM Sans", system-ui, sans-serif;
+    cursor: none;
+    overflow-x: hidden;
+  }
+}
+
+/* Hide default cursor everywhere — must be outside @layer to override utility :hover states */
+*, *:hover { cursor: none !important; }
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #07090d; }
+::-webkit-scrollbar-thumb { background: #4a4845; border-radius: 3px; }
+
+/* ── CSS custom properties (for non-Tailwind use) ── */
+:root {
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ── Text stroke utilities ── */
+.text-outlined {
+  -webkit-text-stroke: 2px #f0ece4;
+  color: transparent;
+}
+
+.text-outlined-gold {
+  -webkit-text-stroke: 1px #c4a35a;
+  color: transparent;
+}
+
+/* ── Noise grain overlay (fixed, not affecting scroll perf) ── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0.028;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ── Scroll reveal animations ── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(48px);
+  filter: blur(6px);
+  transition:
+    opacity 1s var(--ease-expo),
+    transform 1s var(--ease-expo),
+    filter 1s var(--ease-expo);
+  will-change: transform, opacity;
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.delay-1  { transition-delay: 0.08s; }
+.delay-2  { transition-delay: 0.16s; }
+.delay-3  { transition-delay: 0.24s; }
+.delay-4  { transition-delay: 0.32s; }
+.delay-5  { transition-delay: 0.44s; }
+.delay-6  { transition-delay: 0.58s; }
+
+/* ── Section eyebrow label ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c4a35a;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: #c4a35a;
+  flex-shrink: 0;
+}
+
+/* ── Divider line ── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Image double-bezel shell ── */
+.bezel-outer {
+  padding: 6px;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.bezel-inner {
+  border-radius: calc(1.5rem - 6px);
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+/* ── Work card hover overlay ── */
+.work-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(7, 9, 13, 0.95) 0%,
+    rgba(7, 9, 13, 0.5) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-expo);
+}
+
+.work-card:hover .work-card-overlay {
+  opacity: 1;
+}
+
+.work-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  transform: translateY(12px);
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.work-card:hover .work-card-info {
+  transform: translateY(0);
+}
+
+/* ── Hero name char animation container ── */
+.char-mask {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 0.9;
+  padding-top: 0.18em;
+  margin-top: -0.18em;
+  padding-bottom: 0.14em;
+}
+
+/* ── Contact section large link ── */
+.contact-email-link {
+  position: relative;
+  display: inline-block;
+  color: #f0ece4;
+  text-decoration: none;
+  transition: color 0.4s var(--ease-expo);
+}
+
+.contact-email-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #c4a35a;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.contact-email-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.contact-email-link:hover {
+  color: #c4a35a;
+}
+
+/* ── Button ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: #c4a35a;
+  color: #07090d;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  text-decoration: none;
+  transition: background 0.35s var(--ease-expo), transform 0.35s var(--ease-expo);
+  cursor: none;
+}
+
+.btn-primary:hover {
+  background: #d4b36a;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary .icon-circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: rgba(7, 9, 13, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s var(--ease-expo);
+}
+
+.btn-primary:hover .icon-circle {
+  transform: translate(2px, -2px) scale(1.05);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f0ece4;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: border-color 0.35s, background 0.35s;
+  cursor: none;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(196, 163, 90, 0.5);
+  background: rgba(196, 163, 90, 0.06);
+  color: #c4a35a;
+}
+
+/* ── Page container (max-width + centered padding) ── */
+.page-wrap {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .page-wrap {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ── Mobile safe ── */
+@media (max-width: 768px) {
+  body { cursor: auto !important; }
+  *, *:hover { cursor: auto !important; }
+}
