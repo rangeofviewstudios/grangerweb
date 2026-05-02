@@ -267,7 +267,7 @@ export default function Contact() {
             className="text-flint text-xs tracking-wider"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
-            Atlanta, GA · Built with precision.
+            Athens, ATL Georgia · Built with precision.
           </span>
         </motion.div>
       </div>

@@ -6,7 +6,7 @@
   --color-surface: #0d1017;
   --color-plate: #111520;
   --color-canvas: #f0ece4;
-  --color-stone: #8a8880;
+  --color-stone: #b8b4ac;
   --color-flint: #4a4845;
   --color-gold: #c4a35a;
   --color-gold-soft: rgba(196, 163, 90, 0.10);
@@ -240,32 +240,39 @@
   text-transform: uppercase;
   border: none;
   text-decoration: none;
-  transition: background 0.35s var(--ease-expo), transform 0.35s var(--ease-expo);
+  box-shadow: 0 0 0 0 rgba(196, 163, 90, 0);
+  transition:
+    background  0.35s var(--ease-expo),
+    box-shadow  0.35s var(--ease-expo),
+    transform   0.35s var(--ease-expo);
   cursor: none;
 }
 
 .btn-primary:hover {
-  background: #d4b36a;
-  transform: translateY(-1px);
+  background: #f0c96a;
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 6px 28px rgba(196, 163, 90, 0.4), 0 0 0 1px rgba(240, 201, 106, 0.35);
 }
 
 .btn-primary:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+  box-shadow: none;
 }
 
 .btn-primary .icon-circle {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: rgba(7, 9, 13, 0.18);
+  background: rgba(7, 9, 13, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.35s var(--ease-expo);
+  transition: transform 0.35s var(--ease-expo), background 0.35s var(--ease-expo);
 }
 
 .btn-primary:hover .icon-circle {
-  transform: translate(2px, -2px) scale(1.05);
+  background: rgba(7, 9, 13, 0.35);
+  transform: translate(3px, -3px) scale(1.1);
 }
 
 .btn-ghost {
@@ -274,21 +281,28 @@
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #f0ece4;
   font-family: "DM Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: border-color 0.35s, background 0.35s;
+  transition:
+    border-color 0.35s var(--ease-expo),
+    background   0.35s var(--ease-expo),
+    color        0.25s var(--ease-expo),
+    transform    0.35s var(--ease-expo),
+    box-shadow   0.35s var(--ease-expo);
   cursor: none;
 }
 
 .btn-ghost:hover {
-  border-color: rgba(196, 163, 90, 0.5);
-  background: rgba(196, 163, 90, 0.06);
-  color: #c4a35a;
+  border-color: rgba(196, 163, 90, 0.8);
+  background: rgba(196, 163, 90, 0.1);
+  color: #f0c96a;
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 4px 20px rgba(196, 163, 90, 0.15), inset 0 1px 0 rgba(240, 201, 106, 0.12);
 }
 
 /* ── Page container (max-width + centered padding) ── */

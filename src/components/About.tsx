@@ -1,22 +1,29 @@
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const STATS = [
-  { label: "Based",       value: "Atlanta, GA" },
-  { label: "Since",       value: "2019"        },
-  { label: "Focus",       value: "Direction"   },
-  { label: "Clients",     value: "20+"         },
+  { label: "Based",       value: "Athens, GA",      big: false },
+  { label: "Film Sets",   value: "50+",              big: true  },
+  { label: "Live Events", value: "100+",             big: true  },
+  { label: "Clients",     value: "Corps & Artists",  big: false },
 ];
 
 const DISCIPLINES = [
-  "Creative Direction",
+  "Videography",
   "Photography",
-  "Brand Identity",
-  "Art Direction",
-  "Motion",
+  "Filmmaking",
+  "Content Creation",
+  "Video Editing",
+  "Digital Marketing",
+  "Social Media",
+  "Live Broadcasting",
+  "Sports Broadcasting",
+  "Film Marketing",
+  "Journalism",
 ];
 
 export default function About() {
@@ -69,68 +76,37 @@ export default function About() {
             transition={{ duration: 1.1, ease: EASE, delay: 0.1 }}
             className="bezel-outer"
           >
-            <div className="bezel-inner" style={{ aspectRatio: "3/4", minHeight: "300px" }}>
-              {/* Portrait placeholder — gradient composition */}
+            <div className="bezel-inner relative overflow-hidden" style={{ aspectRatio: "3/4", minHeight: "300px" }}>
+              <Image
+                src="/pictures/image000000.JPG"
+                alt="Granger Wang — filmmaker"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              {/* Bottom gradient + badge */}
               <div
-                className="w-full h-full relative overflow-hidden"
+                className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(ellipse 90% 60% at 50% 5%, rgba(196,163,90,0.30) 0%, rgba(196,163,90,0.08) 35%, transparent 65%)," +
-                    "radial-gradient(ellipse 70% 70% at 20% 80%, rgba(20,15,8,0.9) 0%, transparent 70%)," +
-                    "linear-gradient(175deg, #1c1408 0%, #0f1018 40%, #07090d 100%)",
+                    "linear-gradient(to top, rgba(7,9,13,0.75) 0%, rgba(7,9,13,0.1) 40%, transparent 65%)",
                 }}
-              >
-                {/* Large serif initial */}
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
                 <div
-                  className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-                >
-                  <span
-                    className="text-outlined-gold"
-                    style={{
-                      fontFamily: "var(--font-cormorant)",
-                      fontSize: "clamp(10rem, 28vw, 24rem)",
-                      fontWeight: 300,
-                      opacity: 0.07,
-                      lineHeight: 1,
-                      letterSpacing: "-0.05em",
-                    }}
-                  >
-                    G
-                  </span>
-                </div>
-
-                {/* Subtle horizontal bands */}
-                <div
-                  className="absolute inset-0 opacity-[0.04]"
+                  className="inline-flex flex-col px-4 py-3 rounded-xl"
                   style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(255,255,255,0.15) 18px, rgba(255,255,255,0.15) 19px)",
+                    background: "rgba(7,9,13,0.8)",
+                    backdropFilter: "blur(12px)",
+                    border: "1px solid rgba(255,255,255,0.06)",
                   }}
-                />
-
-                {/* Bottom info strip */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div
-                    className="px-4 py-3 rounded-xl"
-                    style={{
-                      background: "rgba(7,9,13,0.8)",
-                      backdropFilter: "blur(12px)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    <p
-                      className="text-stone text-[10px] tracking-widest uppercase mb-1"
-                      style={{ fontFamily: "var(--font-dm-sans)" }}
-                    >
-                      Granger Wang
-                    </p>
-                    <p
-                      className="text-gold text-[10px] tracking-wider uppercase"
-                      style={{ fontFamily: "var(--font-dm-sans)" }}
-                    >
-                      Creative Director
-                    </p>
-                  </div>
+                >
+                  <p className="text-stone text-[10px] tracking-widest uppercase mb-1" style={{ fontFamily: "var(--font-dm-sans)" }}>
+                    Granger Wang
+                  </p>
+                  <p className="text-gold text-[10px] tracking-wider uppercase" style={{ fontFamily: "var(--font-dm-sans)" }}>
+                    Filmmaker · Content Creator
+                  </p>
                 </div>
               </div>
             </div>
@@ -143,15 +119,19 @@ export default function About() {
               initial={{ opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, ease: EASE, delay: 0.2 }}
-              className="font-serif font-light tracking-tight leading-[0.95] mb-8"
+              className="leading-[0.9] mb-8"
               style={{
-                fontFamily: "var(--font-cormorant)",
-                fontSize: "clamp(2.8rem, 5.5vw, 5rem)",
+                fontFamily:    "var(--font-chunko), var(--font-cormorant), serif",
+                fontSize:      "clamp(2.8rem, 5.5vw, 5rem)",
+                fontWeight:    700,
+                letterSpacing: "0.06em",
               }}
             >
-              Precision in
+              CAMERAS,
               <br />
-              <em className="text-gold not-italic">every frame.</em>
+              <span className="text-gold">CUTS,</span>
+              <br />
+              CHAOS.
             </motion.h2>
 
             <motion.div
@@ -168,10 +148,10 @@ export default function About() {
               className="text-stone leading-relaxed mb-5"
               style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem" }}
             >
-              Granger Wang is a creative director and visual artist whose
-              work explores the quiet tension between stillness and movement.
-              With a foundation in photography and graphic design, he brings
-              a precise, human-centered perspective to every project.
+              I've been behind the lens for a while now. 50+ film sets, hundreds
+              of live events, football games, basketball, concerts, musicals. If
+              something's happening and it needs to be captured well, that's
+              where I want to be.
             </motion.p>
 
             <motion.p
@@ -181,47 +161,49 @@ export default function About() {
               className="text-stone leading-relaxed mb-10"
               style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem" }}
             >
-              Whether crafting a brand campaign, editorial series, or
-              collaborative identity system, Granger approaches each
-              project as an opportunity to distill something true.
+              I shoot on the Blackmagic Pocket 6K Pro, Sony A7 III, and drones,
+              and edit in Premiere Pro and DaVinci Resolve. Short-form reels,
+              feature-length films, branded content. The format changes but the
+              approach stays the same: know your client, tell their story right.
             </motion.p>
 
-            {/* Stats grid */}
+            {/* Stats — horizontal strip with big Chunko numbers */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
-              className="grid grid-cols-2 gap-px mb-10"
-              style={{ border: "1px solid rgba(255,255,255,0.05)", borderRadius: "1rem" }}
+              className="grid grid-cols-2 md:grid-cols-4 mb-10 overflow-hidden"
+              style={{
+                border:       "1px solid rgba(255,255,255,0.07)",
+                borderRadius: "1.25rem",
+                background:   "rgba(255,255,255,0.012)",
+              }}
             >
               {STATS.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className="p-5"
+                  className="flex flex-col justify-between p-5 py-6"
                   style={{
-                    borderRight:
-                      i % 2 === 0 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                    borderBottom:
-                      i < 2 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                    background: "rgba(255,255,255,0.015)",
-                    borderRadius:
-                      i === 0 ? "1rem 0 0 0"
-                      : i === 1 ? "0 1rem 0 0"
-                      : i === 2 ? "0 0 0 1rem"
-                      : "0 0 1rem 0",
+                    borderRight:  i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                    borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.07)" : "none",
                   }}
                 >
                   <p
-                    className="text-flint text-[10px] uppercase tracking-widest mb-2"
-                    style={{ fontFamily: "var(--font-dm-sans)" }}
+                    className="text-[9px] uppercase tracking-[0.2em] mb-3"
+                    style={{ fontFamily: "var(--font-dm-sans)", color: "rgba(196,163,90,0.7)" }}
                   >
                     {stat.label}
                   </p>
                   <p
-                    className="text-canvas font-light"
+                    className={stat.big ? "text-gold" : "text-canvas"}
                     style={{
-                      fontFamily: "var(--font-cormorant)",
-                      fontSize: "1.3rem",
+                      fontFamily:    stat.big
+                        ? "var(--font-chunko), var(--font-cormorant), serif"
+                        : "var(--font-cormorant)",
+                      fontSize:      stat.big ? "clamp(2rem, 3.5vw, 2.8rem)" : "1.25rem",
+                      fontWeight:    stat.big ? 700 : 300,
+                      lineHeight:    1,
+                      letterSpacing: stat.big ? "0.02em" : "0",
                     }}
                   >
                     {stat.value}
@@ -237,25 +219,44 @@ export default function About() {
               transition={{ duration: 0.9, ease: EASE, delay: 0.72 }}
             >
               <p
-                className="text-flint text-[10px] uppercase tracking-widest mb-4"
-                style={{ fontFamily: "var(--font-dm-sans)" }}
+                className="text-[9px] uppercase tracking-[0.2em] mb-5"
+                style={{ fontFamily: "var(--font-dm-sans)", color: "rgba(196,163,90,0.7)" }}
               >
                 Disciplines
               </p>
               <div className="flex flex-wrap gap-2">
-                {DISCIPLINES.map((d) => (
-                  <span
-                    key={d}
-                    className="px-4 py-2 rounded-full text-stone text-xs tracking-wide"
-                    style={{
-                      fontFamily: "var(--font-dm-sans)",
-                      border: "1px solid rgba(255,255,255,0.07)",
-                      background: "rgba(255,255,255,0.02)",
-                    }}
-                  >
-                    {d}
-                  </span>
-                ))}
+                {DISCIPLINES.map((d, i) => {
+                  const featured = i < 4;
+                  return (
+                    <span
+                      key={d}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs tracking-wide"
+                      style={{
+                        fontFamily: "var(--font-dm-sans)",
+                        border:     featured
+                          ? "1px solid rgba(196,163,90,0.35)"
+                          : "1px solid rgba(255,255,255,0.07)",
+                        background: featured
+                          ? "rgba(196,163,90,0.06)"
+                          : "rgba(255,255,255,0.02)",
+                        color: featured ? "#c4a35a" : "#b8b4ac",
+                      }}
+                    >
+                      {featured && (
+                        <span
+                          style={{
+                            width: "4px", height: "4px",
+                            borderRadius: "50%",
+                            background: "#c4a35a",
+                            display: "inline-block",
+                            flexShrink: 0,
+                          }}
+                        />
+                      )}
+                      {d}
+                    </span>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
