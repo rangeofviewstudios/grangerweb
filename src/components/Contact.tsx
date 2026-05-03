@@ -1,6 +1,7 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -8,9 +9,20 @@ const EMAIL = "granger@grangewang.com";
 
 const SOCIALS = [
   {
-    label: "Instagram",
-    handle: "@grangerwang",
-    href: "#",
+    label:  "YouTube",
+    handle: "@theoneandonlyboi8093",
+    href:   "https://www.youtube.com/@theoneandonlyboi8093",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="1" y="3.5" width="14" height="9" rx="2.5" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M6.5 6l4 2-4 2V6z" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    label:  "Instagram",
+    handle: "@gwang_studios",
+    href:   "https://www.instagram.com/gwang_studios/",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <rect x="2" y="2" width="12" height="12" rx="3.5" stroke="currentColor" strokeWidth="1.2" />
@@ -20,31 +32,52 @@ const SOCIALS = [
     ),
   },
   {
-    label: "LinkedIn",
-    handle: "Granger Wang",
-    href: "#",
+    label:  "Email",
+    handle: EMAIL,
+    href:   `mailto:${EMAIL}`,
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect x="1.5" y="1.5" width="13" height="13" rx="3" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M4.5 11V6.5M4.5 4.5V4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M8 11V8.5C8 7.4 8.9 6.5 10 6.5S12 7.4 12 8.5V11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M8 6.5V11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    label: "Behance",
-    handle: "grangerwang",
-    href: "#",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 5h5c1.4 0 2.5 1 2.5 2.2S8.4 9.5 7 9.5H2V5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
-        <path d="M2 9.5h5.5c1.6 0 2.8 1.1 2.8 2.2S9.1 14 7.5 14H2V9.5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
-        <path d="M11 4h4M11 6.2c0-1.2 1-2.2 2.2-2.2 1.1 0 2 .9 2 2 0 .2 0 .3-.3.3H11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        <rect x="1.5" y="3.5" width="13" height="9" rx="2" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M1.5 5.5l6.5 4.5 6.5-4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
 ];
+
+function ATLClock() {
+  const fmt = () =>
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour:     "2-digit",
+      minute:   "2-digit",
+      second:   "2-digit",
+      hour12:   false,
+    }).format(new Date());
+
+  const [time, setTime] = useState(fmt);
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(fmt()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="flex items-center gap-2.5">
+      <span
+        className="text-flint text-[10px] uppercase tracking-[0.18em]"
+        style={{ fontFamily: "var(--font-dm-sans)" }}
+      >
+        ATL
+      </span>
+      <span
+        className="text-canvas tabular-nums text-xs tracking-wider"
+        style={{ fontFamily: "var(--font-dm-sans)", fontWeight: 500 }}
+      >
+        {time}
+      </span>
+    </div>
+  );
+}
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -62,7 +95,7 @@ export default function Contact() {
       ref={sectionRef}
       id="contact"
       className="relative overflow-hidden"
-      style={{ background: "#07090d", paddingTop: "7rem", paddingBottom: "5rem" }}
+      style={{ background: "#07090d", paddingTop: "2.5rem", paddingBottom: "2rem" }}
     >
       {/* Background atmosphere */}
       <div
@@ -84,14 +117,14 @@ export default function Contact() {
       >
 
         {/* Top rule */}
-        <div className="rule mb-16 md:mb-20" />
+        <div className="rule mb-10 md:mb-12" />
 
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: EASE }}
-          className="eyebrow mb-8"
+          className="eyebrow mb-6"
         >
           Get In Touch
         </motion.div>
@@ -101,7 +134,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 1.1, ease: EASE, delay: 0.1 }}
-          className="mb-14 md:mb-18"
+          className="mb-8 md:mb-10"
         >
           <h2
             style={{
@@ -184,6 +217,26 @@ export default function Contact() {
               Whether you have a project in mind, want to collaborate,
               or just want to say hello — the inbox is always open.
             </p>
+
+            {/* Big ROV logo — fills the left negative space */}
+            <motion.a
+              href="https://www.rovstudios.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.88, filter: "blur(10px)" }}
+              animate={inView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
+              transition={{ duration: 1.4, ease: EASE, delay: 0.55 }}
+              className="inline-block mt-6"
+              style={{ width: "clamp(180px, 22vw, 300px)" }}
+            >
+              <Image
+                src="/WHITEnoBG.png"
+                alt="Range Of View Studios"
+                width={300}
+                height={300}
+                className="w-full h-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+            </motion.a>
           </motion.div>
 
           {/* Right — socials */}
@@ -200,7 +253,12 @@ export default function Contact() {
             </p>
 
             <div className="flex flex-col gap-2">
-              {SOCIALS.map((social) => (
+              {SOCIALS.map((social, i) => {
+                const isTerra = i === 2;
+                const hoverBg     = isTerra ? "rgba(196,105,74,0.06)"  : "rgba(196,163,90,0.06)";
+                const hoverBorder = isTerra ? "rgba(196,105,74,0.18)"  : "rgba(196,163,90,0.18)";
+                const hoverColor  = isTerra ? "var(--color-terra)"     : "var(--color-gold)";
+                return (
                 <a
                   key={social.label}
                   href={social.href}
@@ -214,16 +272,24 @@ export default function Contact() {
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.background = "rgba(196,163,90,0.06)";
-                    el.style.borderColor = "rgba(196,163,90,0.18)";
+                    el.style.background = hoverBg;
+                    el.style.borderColor = hoverBorder;
+                    const arrow = el.querySelector<HTMLElement>("[data-arrow]");
+                    const icon  = el.querySelector<HTMLElement>("[data-icon]");
+                    if (arrow) arrow.style.color = hoverColor;
+                    if (icon)  icon.style.color  = hoverColor;
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = "rgba(255,255,255,0.015)";
                     el.style.borderColor = "rgba(255,255,255,0.05)";
+                    const arrow = el.querySelector<HTMLElement>("[data-arrow]");
+                    const icon  = el.querySelector<HTMLElement>("[data-icon]");
+                    if (arrow) arrow.style.color = "";
+                    if (icon)  icon.style.color  = "";
                   }}
                 >
-                  <span className="text-stone group-hover:text-gold transition-colors duration-300">
+                  <span data-icon className="text-stone transition-colors duration-300">
                     {social.icon}
                   </span>
                   <div className="flex-1 min-w-0">
@@ -240,36 +306,73 @@ export default function Contact() {
                       {social.handle}
                     </p>
                   </div>
-                  <span className="text-flint group-hover:text-gold transition-all duration-300 text-sm leading-none">
+                  <span data-arrow className="text-flint transition-all duration-300 text-sm leading-none">
                     ↗
                   </span>
                 </a>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         </div>
 
-        {/* Footer bar */}
-        <motion.div
+        {/* ── FOOTER ── */}
+        <motion.footer
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
-          className="flex items-center justify-between flex-wrap gap-4 mt-16 md:mt-20 pt-8"
+          transition={{ duration: 0.9, ease: EASE, delay: 0.7 }}
+          className="relative mt-6 md:mt-8 overflow-hidden"
           style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
         >
-          <span
-            className="text-flint text-xs tracking-wider"
-            style={{ fontFamily: "var(--font-dm-sans)" }}
-          >
-            © 2024 Granger Wang. All rights reserved.
-          </span>
-          <span
-            className="text-flint text-xs tracking-wider"
-            style={{ fontFamily: "var(--font-dm-sans)" }}
-          >
-            Athens, ATL Georgia · Built with precision.
-          </span>
-        </motion.div>
+          {/* Footer content — single unified row */}
+          <div className="relative z-10 pt-7 pb-6">
+            <div className="flex items-center justify-between gap-6 flex-wrap md:flex-nowrap">
+
+              {/* Left — identity */}
+              <div className="flex items-center gap-4">
+                <span
+                  className="text-stone text-[11px] tracking-[0.12em] uppercase whitespace-nowrap"
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                >
+                  © 2025 Granger Wang
+                </span>
+                <span className="text-flint text-[10px]">·</span>
+                <span
+                  className="text-flint text-[11px] tracking-[0.1em] uppercase whitespace-nowrap"
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                >
+                  Athens, ATL Georgia
+                </span>
+              </div>
+
+              {/* Center — live ATL clock */}
+              <ATLClock />
+
+              {/* Right — ROV credit */}
+              <a
+                href="https://www.rovstudios.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 whitespace-nowrap"
+              >
+                <span
+                  className="text-flint text-[11px] tracking-[0.16em] uppercase"
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                >
+                  Curated with intention by
+                </span>
+                <Image
+                  src="/WHITEnoBG.png"
+                  alt="Range Of View Studios"
+                  width={52}
+                  height={52}
+                  className="object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+              </a>
+
+            </div>
+          </div>
+        </motion.footer>
       </div>
     </section>
   );

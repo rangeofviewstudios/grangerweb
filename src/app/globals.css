@@ -11,6 +11,9 @@
   --color-gold: #c4a35a;
   --color-gold-soft: rgba(196, 163, 90, 0.10);
   --color-gold-glow: rgba(196, 163, 90, 0.25);
+  --color-terra: #c4694a;
+  --color-terra-soft: rgba(196, 105, 74, 0.10);
+  --color-terra-glow: rgba(196, 105, 74, 0.22);
   --color-wire: rgba(255, 255, 255, 0.05);
   --color-wire-hover: rgba(255, 255, 255, 0.11);
 

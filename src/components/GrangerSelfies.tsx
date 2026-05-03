@@ -18,7 +18,7 @@ export default function GrangerSelfies() {
   return (
     <section
       id="selfies"
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#07090d" }}
     >
       {/* Atmosphere */}
@@ -39,7 +39,7 @@ export default function GrangerSelfies() {
           width: "100%",
         }}
       >
-        <div className="rule mb-20 md:mb-28" />
+        <div className="rule mb-12 md:mb-16" />
 
         {/* Header */}
         <div ref={headerRef} className="mb-14 md:mb-16">

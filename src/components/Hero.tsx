@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import gsap from "gsap";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -286,7 +287,7 @@ export default function Hero() {
         <div className="flex flex-col">
 
           {/* ── CONTENT ── */}
-          <div className="flex flex-col pt-36 pb-20 md:pt-44 md:pb-28">
+          <div className="flex flex-col pt-36 pb-8 md:pt-44 md:pb-10">
 
             {/* Eyebrow */}
             <motion.div
@@ -357,6 +358,7 @@ export default function Hero() {
                   </span>
                 </a>
                 <a href="#about" className="btn-ghost">About Me</a>
+                <a href="#contact" className="btn-ghost">Contact</a>
               </motion.div>
             </div>
 
@@ -389,6 +391,45 @@ export default function Hero() {
             style={{ height: "40%" }}
           />
         </div>
+      </motion.div>
+
+      {/* Sketch portrait — right-side atmosphere piece */}
+      <motion.div
+        className="absolute right-0 pointer-events-none select-none hidden md:block"
+        style={{ width: "clamp(260px, 28vw, 480px)", zIndex: 5, bottom: "8%" }}
+        initial={{ opacity: 0, x: 48, filter: "blur(6px)" }}
+        animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+        transition={{ duration: 1.2, ease: EASE, delay: 2.0 }}
+      >
+        {/* 24fps choppy animation wrapper */}
+        <motion.div
+          animate={{
+            rotate: [-0.8, 0.6, -1.2, 0.4, -0.5, 1.0, -0.3, 0.7, -0.9, 0.2, -0.8],
+            y:      [0, -5, -2, -8, -1, -6, -3, -9, -4, -7, 0],
+            x:      [0, 2, -1, 1, -2, 0, 1, -1, 2, -1, 0],
+          }}
+          transition={{
+            duration:   11 / 24 * 11,
+            repeat:     Infinity,
+            repeatType: "loop",
+            ease:       (t: number) => Math.floor(t * 24) / 24,
+          }}
+          style={{ transformOrigin: "bottom center" }}
+        >
+          <Image
+            src="/pictures/grangersktech.png"
+            alt="Granger Wang sketch"
+            width={480}
+            height={600}
+            className="w-full h-auto object-contain object-bottom"
+            aria-hidden
+            style={{
+              filter:   "contrast(1.04) brightness(0.97)",
+              maskImage: "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+            }}
+          />
+        </motion.div>
       </motion.div>
     </section>
   );

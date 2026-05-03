@@ -9,25 +9,25 @@ const EASE = [0.16, 1, 0.3, 1] as const;
   Grid layout — each row sums to 12 cols, all photos in the same
   row share the same explicit height so nothing stretches or clips oddly.
 
-  Row 1 (420px): 7 + 5
-  Row 2 (300px): 4 + 4 + 4
-  Row 3 (400px): 5 + 7
-  Row 4 (300px): 4 + 4 + 4
+  Row 1 (300px): 7 + 5
+  Row 2 (210px): 4 + 4 + 4
+  Row 3 (280px): 5 + 7
+  Row 4 (210px): 4 + 4 + 4
 */
 const PHOTOS = [
-  { src: "/pictures/image000000.JPG",   span: "md:col-span-7", height: "h-[260px] md:h-[420px]" },
-  { src: "/pictures/image000001_2.JPG", span: "md:col-span-5", height: "h-[260px] md:h-[420px]" },
+  { src: "/pictures/image000000.JPG",   span: "md:col-span-7", height: "h-[180px] md:h-[300px]" },
+  { src: "/pictures/image000001_2.JPG", span: "md:col-span-5", height: "h-[180px] md:h-[300px]" },
 
-  { src: "/pictures/image000002_2.JPG", span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
-  { src: "/pictures/image000003.JPG",   span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
-  { src: "/pictures/image000004_2.JPG", span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
+  { src: "/pictures/image000002_2.JPG", span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
+  { src: "/pictures/image000003.JPG",   span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
+  { src: "/pictures/image000004_2.JPG", span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
 
-  { src: "/pictures/image000005_2.JPG", span: "md:col-span-5", height: "h-[260px] md:h-[400px]" },
-  { src: "/pictures/image000006_2.JPG", span: "md:col-span-7", height: "h-[260px] md:h-[400px]" },
+  { src: "/pictures/image000005_2.JPG", span: "md:col-span-5", height: "h-[180px] md:h-[280px]" },
+  { src: "/pictures/image000006_2.JPG", span: "md:col-span-7", height: "h-[180px] md:h-[280px]" },
 
-  { src: "/pictures/image000007_2.JPG", span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
-  { src: "/pictures/image000008_2.JPG", span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
-  { src: "/pictures/image000009_2.JPG", span: "md:col-span-4", height: "h-[220px] md:h-[300px]" },
+  { src: "/pictures/image000007_2.JPG", span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
+  { src: "/pictures/image000008_2.JPG", span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
+  { src: "/pictures/image000009_2.JPG", span: "md:col-span-4", height: "h-[150px] md:h-[210px]" },
 ];
 
 export default function InTheField() {
@@ -37,7 +37,7 @@ export default function InTheField() {
   return (
     <section
       id="field"
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#0a0c11" }}
     >
       <div
@@ -57,7 +57,7 @@ export default function InTheField() {
           width:    "100%",
         }}
       >
-        <div className="rule mb-20 md:mb-28" />
+        <div className="rule mb-12 md:mb-16" />
 
         {/* Header */}
         <div ref={headerRef} className="flex items-end justify-between mb-14 md:mb-16 flex-wrap gap-6">
@@ -74,11 +74,12 @@ export default function InTheField() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-              className="tracking-tight leading-[0.9]"
+              className="leading-[0.9]"
               style={{
-                fontFamily: "var(--font-chunko), var(--font-cormorant), serif",
-                fontSize:   "clamp(2.5rem, 6vw, 5.5rem)",
-                fontWeight: 700,
+                fontFamily:    "var(--font-chunko), var(--font-cormorant), serif",
+                fontSize:      "clamp(2.5rem, 6vw, 5.5rem)",
+                fontWeight:    700,
+                letterSpacing: "0.06em",
               }}
             >
               BEHIND
@@ -109,6 +110,19 @@ export default function InTheField() {
   );
 }
 
+const CARD_ACCENTS = [
+  { border: "rgba(196,163,90,0.28)",  glow: "rgba(196,163,90,0.10)"  }, // gold
+  { border: "rgba(196,105,74,0.28)",  glow: "rgba(196,105,74,0.10)"  }, // terra
+  { border: "rgba(196,163,90,0.28)",  glow: "rgba(196,163,90,0.10)"  }, // gold
+  { border: "rgba(196,105,74,0.28)",  glow: "rgba(196,105,74,0.10)"  }, // terra
+  { border: "rgba(196,163,90,0.28)",  glow: "rgba(196,163,90,0.10)"  }, // gold
+  { border: "rgba(196,105,74,0.28)",  glow: "rgba(196,105,74,0.10)"  }, // terra
+  { border: "rgba(196,163,90,0.28)",  glow: "rgba(196,163,90,0.10)"  }, // gold
+  { border: "rgba(196,105,74,0.28)",  glow: "rgba(196,105,74,0.10)"  }, // terra
+  { border: "rgba(196,163,90,0.28)",  glow: "rgba(196,163,90,0.10)"  }, // gold
+  { border: "rgba(196,105,74,0.28)",  glow: "rgba(196,105,74,0.10)"  }, // terra
+];
+
 function PhotoCard({
   photo,
   index,
@@ -118,6 +132,7 @@ function PhotoCard({
 }) {
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const accent = CARD_ACCENTS[index % CARD_ACCENTS.length];
 
   return (
     <motion.div
@@ -126,6 +141,19 @@ function PhotoCard({
       animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
       transition={{ duration: 0.9, ease: EASE, delay: (index % 3) * 0.08 }}
       className={`${photo.span} bezel-outer group`}
+      style={{
+        transition: "border-color 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1)",
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = accent.border;
+        el.style.boxShadow = `0 0 24px ${accent.glow}`;
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = "rgba(255,255,255,0.06)";
+        el.style.boxShadow = "none";
+      }}
     >
       <div className={`bezel-inner relative overflow-hidden ${photo.height}`}>
         <Image

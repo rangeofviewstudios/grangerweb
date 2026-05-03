@@ -34,7 +34,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#0a0c11" }}
     >
       {/* Atmospheric gradient */}

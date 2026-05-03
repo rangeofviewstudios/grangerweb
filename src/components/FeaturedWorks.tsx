@@ -163,7 +163,7 @@ export default function FeaturedWorks() {
   return (
     <section
       id="work"
-      className="relative py-28 md:py-40 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#07090d" }}
     >
       <div
@@ -175,10 +175,10 @@ export default function FeaturedWorks() {
         }}
       >
         {/* Subtle top divider */}
-        <div className="rule mb-20 md:mb-28" />
+        <div className="rule mb-12 md:mb-16" />
 
         {/* Section header */}
-        <div ref={headerRef} className="flex items-end justify-between mb-14 md:mb-16 flex-wrap gap-6">
+        <div ref={headerRef} className="flex items-end justify-between mb-10 md:mb-12 flex-wrap gap-6">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -231,7 +231,7 @@ export default function FeaturedWorks() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
-          className="flex justify-center mt-14 md:mt-16"
+          className="flex justify-center mt-10 md:mt-12"
         >
           <button
             className="btn-ghost group"
