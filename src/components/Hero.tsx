@@ -175,9 +175,8 @@ function SliderReveal({ width: rawW, height: rawH }: { width: number; height: nu
             onKeyDown={nudge(handle)}
             className="z-20 absolute top-0 h-full rounded-full flex items-center justify-center cursor-ew-resize focus:outline-none"
             style={{
-              left,
-              width:       handleSize,
               left:        x,
+              width:       handleSize,
               touchAction: "none",
               background:  "#07090d",
               border:      "1px solid #c4a35a",
