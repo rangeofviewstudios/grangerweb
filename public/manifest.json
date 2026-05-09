@@ -1,0 +1,19 @@
+{
+  "name": "Granger Wang — Filmmaker & Videographer",
+  "short_name": "Granger Wang",
+  "description": "Portfolio of Granger Wang, filmmaker and videographer based in Atlanta & Athens, Georgia.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#07090d",
+  "background_color": "#07090d",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/WHITEnoBG.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

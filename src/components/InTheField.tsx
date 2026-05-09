@@ -100,7 +100,7 @@ export default function InTheField() {
         </div>
 
         {/* Grid — explicit heights per row keep everything aligned */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-4">
           {PHOTOS.map((photo, i) => (
             <PhotoCard key={photo.src} photo={photo} index={i} />
           ))}

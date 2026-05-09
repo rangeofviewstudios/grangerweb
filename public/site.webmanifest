@@ -1,0 +1,13 @@
+{
+  "name": "Granger Wang",
+  "short_name": "Granger Wang",
+  "description": "Filmmaker · Videographer · Content Creator — Atlanta & Athens, Georgia",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#07090d",
+  "background_color": "#07090d",
+  "display": "standalone",
+  "start_url": "/"
+}

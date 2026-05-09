@@ -85,7 +85,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <a
-            href="mailto:granger@example.com"
+            href="mailto:contact@grangerwang.com"
             className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide
                        border border-gold/30 text-gold hover:bg-gold/10 transition-all duration-300"
             style={{ fontFamily: "var(--font-dm-sans)" }}

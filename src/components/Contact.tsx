@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const EMAIL = "granger@grangewang.com";
+const EMAIL = "contact@grangerwang.com";
 
 const SOCIALS = [
   {
@@ -326,9 +326,40 @@ export default function Contact() {
         >
           {/* Footer content — single unified row */}
           <div className="relative z-10 pt-7 pb-6">
-            <div className="flex items-center justify-between gap-6 flex-wrap md:flex-nowrap">
+            {/* Mobile layout */}
+            <div className="flex flex-col gap-3 md:hidden">
+              <div className="flex items-center justify-between">
+                <span
+                  className="text-stone text-[11px] tracking-[0.12em] uppercase"
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                >
+                  © 2025 Granger Wang
+                </span>
+                <ATLClock />
+              </div>
+              <div className="flex items-center justify-between">
+                <span
+                  className="text-flint text-[11px] tracking-[0.1em] uppercase"
+                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                >
+                  Atlanta &amp; Athens, GA
+                </span>
+                <a
+                  href="https://www.rovstudios.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <span className="text-flint text-[10px] tracking-[0.14em] uppercase" style={{ fontFamily: "var(--font-dm-sans)" }}>
+                    by ROV
+                  </span>
+                  <Image src="/WHITEnoBG.png" alt="Range Of View Studios" width={36} height={36} className="object-contain opacity-80" />
+                </a>
+              </div>
+            </div>
 
-              {/* Left — identity */}
+            {/* Desktop layout */}
+            <div className="hidden md:flex items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <span
                   className="text-stone text-[11px] tracking-[0.12em] uppercase whitespace-nowrap"
@@ -341,14 +372,10 @@ export default function Contact() {
                   className="text-flint text-[11px] tracking-[0.1em] uppercase whitespace-nowrap"
                   style={{ fontFamily: "var(--font-dm-sans)" }}
                 >
-                  Athens, ATL Georgia
+                  Atlanta &amp; Athens, Georgia
                 </span>
               </div>
-
-              {/* Center — live ATL clock */}
               <ATLClock />
-
-              {/* Right — ROV credit */}
               <a
                 href="https://www.rovstudios.com/"
                 target="_blank"
@@ -369,7 +396,6 @@ export default function Contact() {
                   className="object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                 />
               </a>
-
             </div>
           </div>
         </motion.footer>

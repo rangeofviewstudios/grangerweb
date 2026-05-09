@@ -60,10 +60,10 @@ interface WorkItem {
 
 /* ── Aspect → Tailwind height ── */
 const ASPECT_H: Record<WorkItem["aspect"], string> = {
-  portrait: "h-[420px]",
-  wide:     "h-[300px]",
-  cinema:   "h-[260px]",
-  square:   "h-[240px]",
+  portrait: "h-[260px] sm:h-[420px]",
+  wide:     "h-[200px] md:h-[300px]",
+  cinema:   "h-[180px] md:h-[260px]",
+  square:   "h-[160px] md:h-[240px]",
 };
 
 /* ── Grid layouts per category ── */
@@ -149,7 +149,7 @@ function WorkCard({ item, index, wide = false }: { item: WorkItem; index: number
   const accentA = isGold ? "rgba(196,163,90,0.3)" : "rgba(196,105,74,0.3)";
 
   const heightClass = wide
-    ? "h-[300px] md:h-[400px]"
+    ? "h-[200px] md:h-[400px]"
     : ASPECT_H[item.aspect];
 
   return (
