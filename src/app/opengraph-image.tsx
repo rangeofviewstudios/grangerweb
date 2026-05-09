@@ -58,17 +58,17 @@ export default function OGImage() {
         {/* Name */}
         <div
           style={{
+            display:       "flex",
+            flexDirection: "column",
             fontSize:      112,
             fontWeight:    700,
-            color:         "#f0ece4",
             lineHeight:    0.88,
             letterSpacing: "-2px",
             marginBottom:  28,
             fontFamily:    "serif",
           }}
         >
-          GRANGER
-          <br />
+          <span style={{ color: "#f0ece4" }}>GRANGER</span>
           <span style={{ WebkitTextStroke: "2px #f0ece4", color: "transparent" }}>
             WANG
           </span>
