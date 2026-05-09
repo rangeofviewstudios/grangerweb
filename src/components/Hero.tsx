@@ -296,7 +296,7 @@ export default function Hero() {
               transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
               className="eyebrow mb-8 md:mb-10"
             >
-              Filmmaker · Videographer · Content Creator
+              Producer · Filmmaker · Videographer · Photographer · Content Creator
             </motion.div>
 
             {/* Name — full-width display type */}
@@ -332,14 +332,33 @@ export default function Hero() {
                 transition={{ duration: 0.8, ease: EASE, delay: 1.5 }}
                 className="mt-10 md:mt-12"
               >
+                <p
+                  className="mb-4"
+                  style={{
+                    fontFamily: "var(--font-cormorant)",
+                    fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+                    color: "#c4a35a",
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Never miss a shot.
+                </p>
                 <div className="rule mb-5" />
                 <p
-                  className="text-stone leading-relaxed"
+                  className="text-stone leading-relaxed mb-3"
                   style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.9rem" }}
                 >
-                  From live broadcasts to film sets — creating content that
-                  moves people, builds brands, and tells stories worth telling.
-                  Based in Athens, ATL Georgia.
+                  One partner for every format, every location, every deadline.
+                </p>
+                <p
+                  className="leading-relaxed"
+                  style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.82rem", color: "#4a4845" }}
+                >
+                  From short-form reels to full documentaries — the one creator
+                  who stays consistent, travels without hesitation, and makes
+                  your brand impossible to ignore. Atlanta & Athens, Georgia.
                 </p>
               </motion.div>
 

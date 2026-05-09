@@ -131,7 +131,7 @@ export default function About() {
               <br />
               <span className="text-gold">CUTS,</span>
               <br />
-              CHAOS.
+              ACTION.
             </motion.h2>
 
             <motion.div

@@ -8,7 +8,6 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const SELFIES = [
   "/pictures/gsellfie1.JPG",
   "/pictures/gsellfie2.JPG",
-  "/pictures/gsellfie3.JPG",
 ];
 
 export default function GrangerSelfies() {
@@ -69,8 +68,8 @@ export default function GrangerSelfies() {
           </motion.h2>
         </div>
 
-        {/* Three-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {/* Two-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           {SELFIES.map((src, i) => (
             <SelfieCard key={src} src={src} index={i} />
           ))}
